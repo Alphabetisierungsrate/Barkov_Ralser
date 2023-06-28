@@ -25,3 +25,15 @@ services:
       mode: replicated
       replicas: 2
 
+  monitor:
+    build:
+      context: ./monitor
+      dockerfile: Dockerfile
+    depends_on:
+      - manager
+      - client
+    expose:
+      - "3006"
+    ports:
+      - "3006:3006"
+

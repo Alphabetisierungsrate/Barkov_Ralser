@@ -21,6 +21,7 @@ for (let i = 0; i < i+1; i++) {
     if (deposit) {
         console.log("Depositing: ", sum, "from: ", id)
         const response = await fetch('http://172.17.0.1:3000/deposit', {
+        // const response = await fetch('http://localhost:3000/deposit', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -32,6 +33,7 @@ for (let i = 0; i < i+1; i++) {
     } else {
         console.log("Withdrawing: ", sum, "from: ", id)
         const response = await fetch('http://172.17.0.1:3000/withdraw', {
+        // const response = await fetch('http://localhost:3000/withdraw', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

@@ -46,4 +46,32 @@ export default class Persistence {
 
         return sum
     }
+
+    static getBalfromAccs() {
+        let ids, sums
+        let filez
+
+        fs.readdir('./db', function (err, files) {
+            //handling error
+            if (err) {
+                return console.log('Unable to scan directory: ' + err);
+            }
+            filez = files
+            //listing all files using forEach
+        })
+        // filez.forEach(function (file) {
+        //     // Do whatever you want to do with the file
+        //     let sum = fs.readFileSync(`./db/${file}`,
+        //         {encoding: 'utf8', flag: 'r'});
+        //
+        //
+        //     console.log(file);
+        //     console.log(sum)
+        //
+        //
+        //     ids.push(file)
+        //     sums.push(sum)
+        // });
+        return {ids: "123", sums: "10000"}
+    }
 }

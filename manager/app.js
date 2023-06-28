@@ -1,6 +1,7 @@
 import express from 'express'
 import Persistence from "./persistence.js";
 import bodyParser from 'body-parser';
+import cors from 'cors'
 
 const app = express()
 const port = process.env.PORT || 3000;
@@ -9,6 +10,7 @@ app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
+app.use(cors())
 
 app.get('/ping', (req, res) => {
     res.status(202)
@@ -60,6 +62,14 @@ app.post('/withdraw', (req, res) => {
     }
     const nBalance = balance - sum
     console.log("New balance: ", JSON.stringify(nBalance))
+})
+
+app.get('/getBalance', (req, res) => {
+    const resp = Persistence.getBalfromAccs()
+    console.log(resp)
+    res.json(resp)
+
+    res.send
 })
 
 app.listen(port, () => {
