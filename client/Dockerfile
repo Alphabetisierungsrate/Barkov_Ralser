@@ -1,11 +1,12 @@
-FROM node:17-slim
+FROM node:18
 
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/app/client
+WORKDIR /usr/src/app/client
 
 COPY package*.json ./
 
-RUN npm install --omit=dev
+RUN npm install
 
-COPY . ./
+COPY . .
 
-CMD [ "npm", "run" ]
+CMD [ "node", "index.js" ]

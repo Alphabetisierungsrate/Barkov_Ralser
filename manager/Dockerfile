@@ -1,11 +1,21 @@
-FROM node:17-slim
+FROM node:18
 
-WORKDIR /usr/src/app
+# Create app directory
+RUN mkdir -p /usr/src/app/manager
+WORKDIR /usr/src/app/manager
 
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install --omit=dev
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --omit=dev
 
-COPY . ./
+# Bundle app source
+COPY . .
 
-CMD [ "npm", "run" ]
+EXPOSE 3000
+
+CMD ["node", "app.js"]

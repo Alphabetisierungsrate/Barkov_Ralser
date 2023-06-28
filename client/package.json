@@ -5,13 +5,13 @@
   "description": "This folder should contain all configuration and source files for the client application.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "node index.js",
-    "run2": "node index.js"
+    "run": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fetch": "^1.1.0"
+    "dotenv": "^16.3.1",
+    "fetch": "^1.1.0",
+    "nodemon": "^2.0.22"
   }
 }

@@ -1,2 +1,4 @@
 /manager/node_modules/
-/manager/db/
+/client/node_modules/
+/manager/db/*
+!/manager/db/.gitkeep

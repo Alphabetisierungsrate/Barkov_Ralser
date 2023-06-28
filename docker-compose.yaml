@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+
+  manager:
+    build:
+      context: ./manager
+      dockerfile: Dockerfile
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    depends_on:
+      - manager
+    restart: on-failure
+    deploy:
+      mode: replicated
+      replicas: 2
+
