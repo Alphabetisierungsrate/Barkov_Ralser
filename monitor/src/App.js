@@ -1,64 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useEffect, useState} from 'react'
+import axios from "axios";
 
 function App() {
     const [users, setUsers] = useState([])
-
-    // const fetchUserData = () => {
-    //     fetch("https://jsonplaceholder.typicode.com/users")
-    //         .then(response => {
-    //             return response.json()
-    //         })
-    //         .then(data => {
-    //             setUsers(data)
-    //         })
-    // }
-    const fetchUserData = () => {
-        fetch("http://172.17.0.1:3000/getBalance")
-        // fetch("http://localhost:3000/getBalance")
+    const fetchUserData = async () => {
+        await axios.get("http://localhost:8080/api/getBalance")
             .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                console.log(data)
-                setUsers(data)
+                console.log(response.data)
+                setUsers(response.data)
             })
     }
 
     useEffect(() => {
-        fetchUserData()
+        fetchUserData().then(r => r)
     }, [])
 
     return (
         <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <p>
-                    {users.ids}
-                    {users.sums}
-                    hello world
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-
-            { users.length > 0 && (
-                <ul>
+            <h1>Verteilte Systeme - Monitor</h1>
+            {users.length > 0 && (
+                <ol>
                     {users.map(user => (
-                        <li key={user.ids}>{user.sums}</li>
+                        <li key={user._id}>
+                            <p>id: {user._id}</p>
+                            <p>balance: {user.balance}</p>
+                            <p>operations: {user.operations.toString()}</p>
+                        </li>
                     ))}
-                    <p>Here should be info about accs</p>
-                </ul>
+                </ol>
             )}
-            </header>
+
 
         </div>
     );

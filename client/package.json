@@ -5,11 +5,12 @@
   "description": "This folder should contain all configuration and source files for the client application.",
   "main": "index.js",
   "scripts": {
-    "run": "node index.js"
+    "client:start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "fetch": "^1.1.0",
     "nodemon": "^2.0.22"

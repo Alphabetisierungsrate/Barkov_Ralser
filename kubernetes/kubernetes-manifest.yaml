@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vs-kubernetes
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: client1
+          image: CLIENT_CONTAINER_IMAGE_NAME
+        - name: client2
+          image: CLIENT_CONTAINER_IMAGE_NAME
+        - name: manager
+          image: MANAGER_CONTAINER_IMAGE_NAME
+          ports:
+            - containerPort: 3000
+        - name: monitor
+          image: MONITOR_CONTAINER_IMAGE_NAME
+          ports:
+            - containerPort: 9090
